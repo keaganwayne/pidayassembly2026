@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pi Day Assembly — Activity Signups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0f1115;
+      --card: #151a22;
+      --card2:#10141b;
+      --text:#e8edf5;
+      --muted:#aab6c8;
+      --line: rgba(255,255,255,.10);
+      --accent:#d4b25c;
+      --accent2:#5cd4c4;
+      --good:#44d17f;
+      --bad:#ff5b6b;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:"DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(212,178,92,.18), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(92,212,196,.14), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+    }
+
+    .wrap{ max-width: 980px; margin: 0 auto; padding: 28px 16px 40px; }
+
+    header{
+      padding: 22px 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+    }
+
+    .kicker{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .pill{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    h1{
+      margin:0;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      letter-spacing:.2px;
+      font-size: clamp(28px, 4vw, 40px);
+    }
+    .sub{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 70ch;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 880px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      display:flex; justify-content:space-between; gap:10px; align-items:center;
+    }
+    .card .hd h2{
+      margin:0;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .card .bd{ padding: 16px; }
+
+    label{ display:block; margin: 0 0 6px; font-size: 13px; color: var(--muted); }
+    input, select{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      outline:none;
+    }
+    input:focus, select:focus{ border-color: rgba(212,178,92,.55); box-shadow: 0 0 0 4px rgba(212,178,92,.10); }
+
+    .row{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 560px){ .row{ grid-template-columns: 1fr; } }
+
+    .activity{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border-radius: 14px;
+      padding: 12px 12px;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      margin-bottom: 10px;
+    }
+    .activity input[type="checkbox"]{
+      width: 18px; height: 18px; margin-top: 3px;
+      accent-color: var(--accent);
+      flex: 0 0 auto;
+    }
+    .activity .title{
+      font-weight: 700; margin: 0; font-size: 14px;
+    }
+    .activity .desc{
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .tiny-link{
+      display:inline-block;
+      margin-top: 6px;
+      color: var(--accent2);
+      text-decoration: none;
+      font-size: 13px;
+      border-bottom: 1px dashed rgba(92,212,196,.5);
+    }
+    .tiny-link:hover{ border-bottom-style: solid; }
+
+    .actions{
+      display:flex; gap: 10px; align-items:center; flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    button{
+      border: 1px solid rgba(212,178,92,.45);
+      background: linear-gradient(180deg, rgba(212,178,92,.18), rgba(212,178,92,.08));
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight: 700;
+      letter-spacing:.2px;
+      min-width: 160px;
+    }
+    button:hover{ filter: brightness(1.05); }
+    button:disabled{ opacity: .55; cursor:not-allowed; }
+
+    .note{
+      font-size: 13px;
+      color: var(--muted);
+      line-height:1.45;
+    }
+
+    .status{
+      border-radius: 14px;
+      padding: 12px 12px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.20);
+      display:none;
+    }
+    .status.ok{ display:block; border-color: rgba(68,209,127,.45); }
+    .status.bad{ display:block; border-color: rgba(255,91,107,.45); }
+    .status .t{ font-weight: 800; margin:0 0 4px; }
+    .status .m{ margin:0; color: var(--muted); }
+
+    footer{
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+      opacity: .85;
+      padding: 10px 2px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="kicker">
+        <span class="pill">Pi Day Assembly</span>
+        <span class="pill">Sign up for activities</span>
+        <span class="pill">You may choose more than one</span>
+      </div>
+      <h1>Student Activity Signups</h1>
+      <p class="sub">
+        Choose the activities you want to participate in. This is not first-come-first-serve.
+        Signups will be used to randomly select participants.
+      </p>
+    </header>
+
+    <div class="grid">
+      <!-- Student Info -->
+      <section class="card">
+        <div class="hd">
+          <h2>Student info</h2>
+          <span class="pill" style="border-color:rgba(255,255,255,.14)">Required</span>
+        </div>
+        <div class="bd">
+          <div class="row">
+            <div>
+              <label for="name">Student name</label>
+              <input id="name" type="text" placeholder="e.g. Alex Chen" autocomplete="name" />
+            </div>
+            <div>
+              <label for="homeroom">Homeroom</label>
+              <input id="homeroom" type="text" placeholder="e.g. 6A / 7C / 8B" />
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:12px;">
+            <div>
+              <label for="teacher">Math teacher</label>
+              <select id="teacher">
+                <option value="">Select…</option>
+                <option>Mr Appel</option>
+                <option>Mr Lin</option>
+                <option>Ms Shen</option>
+                <option>Ms Xia</option>
+                <option>Mr Zhang</option>
+                <option>Mr Janko</option>
+                <option>Mrs Tan</option>
+                <option>Mr Davis</option>
+              </select>
+            </div>
+            <div>
+              <label for="grade">Grade (optional)</label>
+              <select id="grade">
+                <option value="">—</option>
+                <option>Grade 6</option>
+                <option>Grade 7</option>
+                <option>Grade 8</option>
+                <option>Grade 9</option>
+                <option>Grade 10</option>
+                <option>Grade 11</option>
+                <option>Grade 12</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Optional code field (only used if ACCESS_CODE is set in Apps Script) -->
+          <div style="margin-top:12px;">
+            <label for="code">Access code (only if your teacher gave you one)</label>
+            <input id="code" type="text" placeholder="Leave blank unless required" />
+          </div>
+
+          <div class="actions">
+            <button id="submitBtn">Submit signup</button>
+            <div class="note">
+              Required: name, homeroom, math teacher, and at least one activity.
+            </div>
+          </div>
+
+          <div id="statusOk" class="status ok" role="status" aria-live="polite">
+            <p class="t">Submitted ✅</p>
+            <p class="m">Your signup has been recorded.</p>
+          </div>
+          <div id="statusBad" class="status bad" role="status" aria-live="polite">
+            <p class="t">Not submitted ❌</p>
+            <p class="m" id="statusBadMsg">Please check your details and try again.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Activities -->
+      <section class="card">
+        <div class="hd">
+          <h2>Choose activities</h2>
+          <span class="pill" style="border-color:rgba(212,178,92,.35)">Multi-select</span>
+        </div>
+        <div class="bd" id="activities">
+          <div class="activity">
+            <input type="checkbox" id="a1" value="Rubiks cube contest">
+            <div>
+              <p class="title"><label for="a1" style="margin:0;color:var(--text);font-size:14px;">Rubiks cube contest</label></p>
+              <p class="desc">Race head-to-head. Winners advance until one final champion remains.</p>
+            </div>
+          </div>
+
+          <div class="activity">
+            <input type="checkbox" id="a2" value="Math Trivia">
+            <div>
+              <p class="title"><label for="a2" style="margin:0;color:var(--text);font-size:14px;">Math Trivia</label></p>
+              <p class="desc">3 teams of 4 students. Mixed grades. Questions test math knowledge + deductive reasoning.</p>
+            </div>
+          </div>
+
+          <div class="activity">
+            <input type="checkbox" id="a3" value="Pi puzzle">
+            <div>
+              <p class="title"><label for="a3" style="margin:0;color:var(--text);font-size:14px;">Pi puzzle</label></p>
+              <p class="desc">How many digits of π can you recall? Put your memory to the test.</p>
+            </div>
+          </div>
+
+          <div class="activity">
+            <input type="checkbox" id="a4" value="Pi Story">
+            <div>
+              <p class="title"><label for="a4" style="margin:0;color:var(--text);font-size:14px;">Pi Story</label></p>
+              <p class="desc">Write a story where each word starts with the letter mapped from π digits.</p>
+              <a class="tiny-link" href="https://script.google.com/macros/s/AKfycbz5Bu5p84LMOqmxjHhcgpGXUCSjYjO-xVFNR_AhUCNDoHHk1Q3debY0j8xCvDSy3RyOwA/exec" target="_blank" rel="noopener noreferrer">
+                Open Pi Story activity
+              </a>
+            </div>
+          </div>
+
+          <div class="activity">
+            <input type="checkbox" id="a5" value="Guess the handwriting">
+            <div>
+              <p class="title"><label for="a5" style="margin:0;color:var(--text);font-size:14px;">Guess the handwriting</label></p>
+              <p class="desc">Do you know your math teachers well enough to recognize their handwriting?</p>
+            </div>
+          </div>
+
+          <p class="note" style="margin-top:10px;">
+            You can choose more than one. Signups will be used to randomly select participants.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      If you submit and later change your mind, just submit again — staff can sort it out from the sheet.
+    </footer>
+  </div>
+
+  <script>
+    // Paste your deployed Apps Script Web App URL here:
+    const ENDPOINT = "https://script.google.com/macros/s/AKfycbxWGskpUrsxM84lFF0HKFQSVY2A_KS2xIzyurR5JCO1InLR4eEuGUT7oIUnQXpYgTYM/exec";
+
+    const els = {
+      name: document.getElementById("name"),
+      homeroom: document.getElementById("homeroom"),
+      teacher: document.getElementById("teacher"),
+      grade: document.getElementById("grade"),
+      code: document.getElementById("code"),
+      submitBtn: document.getElementById("submitBtn"),
+      statusOk: document.getElementById("statusOk"),
+      statusBad: document.getElementById("statusBad"),
+      statusBadMsg: document.getElementById("statusBadMsg"),
+      activitiesWrap: document.getElementById("activities"),
+    };
+
+    function getSelectedActivities() {
+      const boxes = els.activitiesWrap.querySelectorAll('input[type="checkbox"]');
+      return Array.from(boxes).filter(b => b.checked).map(b => b.value);
+    }
+
+    function setStatus(ok, msg="") {
+      els.statusOk.style.display = ok ? "block" : "none";
+      els.statusBad.style.display = ok ? "none" : "block";
+      if (!ok && msg) els.statusBadMsg.textContent = msg;
+    }
+
+    function validate() {
+      const name = els.name.value.trim();
+      const homeroom = els.homeroom.value.trim();
+      const teacher = els.teacher.value.trim();
+      const activities = getSelectedActivities();
+
+      if (!name) return { ok:false, msg:"Enter your name." };
+      if (!homeroom) return { ok:false, msg:"Enter your homeroom (e.g. 6A)." };
+      if (!teacher) return { ok:false, msg:"Select your math teacher." };
+      if (activities.length === 0) return { ok:false, msg:"Choose at least one activity." };
+      if (!ENDPOINT || ENDPOINT.includes("https://script.google.com/macros/s/AKfycbxWGskpUrsxM84lFF0HKFQSVY2A_KS2xIzyurR5JCO1InLR4eEuGUT7oIUnQXpYgTYM/exec")) {
+        return { ok:false, msg:"Form is not configured: missing endpoint URL." };
+      }
+      return { ok:true };
+    }
+
+    async function submit() {
+      els.submitBtn.disabled = true;
+      setStatus(true); // show optimistic “submitted” while sending? We'll hide if fail.
+      els.statusOk.style.display = "none";
+      els.statusBad.style.display = "none";
+
+      const v = validate();
+      if (!v.ok) {
+        setStatus(false, v.msg);
+        els.submitBtn.disabled = false;
+        return;
+      }
+
+      const activities = getSelectedActivities();
+
+      // Use x-www-form-urlencoded (simple request, easier CORS)
+      const params = new URLSearchParams();
+      params.set("name", els.name.value.trim());
+      params.set("homeroom", els.homeroom.value.trim());
+      params.set("teacher", els.teacher.value.trim());
+      params.set("grade", els.grade.value.trim());
+      params.set("code", els.code.value.trim());
+      params.set("ua", navigator.userAgent || "");
+
+      // Multi-select activities:
+      for (const a of activities) params.append("activity", a);
+
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          body: params.toString(),
+        });
+
+        // If CORS headers are set properly, this will be readable
+        const data = await res.json().catch(() => ({}));
+
+        if (!res.ok || data.ok === false) {
+          setStatus(false, data.error || "Submission failed. Try again.");
+          els.submitBtn.disabled = false;
+          return;
+        }
+
+        setStatus(true);
+        // Optional: clear selections after success
+        // els.name.value = ""; els.homeroom.value = ""; els.teacher.value = ""; els.grade.value = ""; els.code.value = "";
+        // els.activitiesWrap.querySelectorAll('input[type="checkbox"]').forEach(b => b.checked = false);
+
+      } catch (err) {
+        setStatus(false, "Network error. Try again (or refresh) and submit once more.");
+      } finally {
+        els.submitBtn.disabled = false;
+      }
+    }
+
+    els.submitBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      submit();
+    });
+  </script>
+</body>
+</html>
