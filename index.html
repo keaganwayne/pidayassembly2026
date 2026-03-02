@@ -384,8 +384,8 @@
       if (!teacher) return { ok:false, msg:"Select your math teacher." };
       if (activities.length === 0) return { ok:false, msg:"Choose at least one activity." };
       if (!ENDPOINT || ENDPOINT.includes("https://demo.invalid/form")) {
-        return { ok:false, msg:"Form is not configured: missing endpoint URL." };
-      }
+    return { ok:false, msg:"Form is not configured: missing endpoint URL." };
+    }
       return { ok:true };
     }
 
