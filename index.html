@@ -419,33 +419,41 @@ return { ok:true };
       // Multi-select activities:
       for (const a of activities) params.append("activity", a);
 
-      try {
+            try {
         const res = await fetch(ENDPOINT, {
           method: "POST",
+          mode: "cors",
+          redirect: "follow",
           headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
           body: params.toString(),
         });
 
-        // If CORS headers are set properly, this will be readable
-        const data = await res.json().catch(() => ({}));
+        const text = await res.text(); // could be JSON or HTML
 
-        if (!res.ok || data.ok === false) {
-          setStatus(false, data.error || "Submission failed. Try again.");
-          els.submitBtn.disabled = false;
+        let data = {};
+        try { data = JSON.parse(text); } catch (e) {}
+
+        if (!res.ok) {
+          console.log("RAW RESPONSE:", text);
+          setStatus(false, `Server error: ${res.status} ${res.statusText}`);
+          return;
+        }
+
+        if (data.ok !== true) {
+          console.log("RAW RESPONSE:", text);
+          setStatus(false, data.error || ("Unexpected response: " + text.slice(0, 200)));
           return;
         }
 
         setStatus(true);
-        // Optional: clear selections after success
-        // els.name.value = ""; els.homeroom.value = ""; els.teacher.value = ""; els.grade.value = ""; els.code.value = "";
-        // els.activitiesWrap.querySelectorAll('input[type="checkbox"]').forEach(b => b.checked = false);
 
       } catch (err) {
-        setStatus(false, "Network error. Try again (or refresh) and submit once more.");
+        console.error(err);
+        setStatus(false, "Network error: " + (err?.message || String(err)));
       } finally {
         els.submitBtn.disabled = false;
       }
-    }
+    } // <-- closes submit()
 
     els.submitBtn.addEventListener("click", (e) => {
       e.preventDefault();
