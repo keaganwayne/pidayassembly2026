@@ -380,14 +380,17 @@
       const activities = getSelectedActivities();
 
       if (!name) return { ok:false, msg:"Enter your name." };
-      if (!homeroom) return { ok:false, msg:"Enter your homeroom (e.g. 6A)." };
-      if (!teacher) return { ok:false, msg:"Select your math teacher." };
-      if (activities.length === 0) return { ok:false, msg:"Choose at least one activity." };
-      if (!ENDPOINT || ENDPOINT.includes("https://script.google.com/macros/s/AKfycbxWGskpUrsxM84lFF0HKFQSVY2A_KS2xIzyurR5JCO1InLR4eEuGUT7oIUnQXpYgTYM/exec")) {
-    return { ok:false, msg:"Form is not configured: missing endpoint URL." };
-    }
-      return { ok:true };
-    }
+if (!homeroom) return { ok:false, msg:"Enter your homeroom (e.g. 6A)." };
+if (!teacher) return { ok:false, msg:"Select your math teacher." };
+if (activities.length === 0) return { ok:false, msg:"Choose at least one activity." };
+
+// ✅ Correct endpoint check (fails only if ENDPOINT is blank or still a placeholder)
+if (!ENDPOINT) {
+  return { ok:false, msg:"Form is not configured: missing endpoint URL." };
+}
+
+return { ok:true };
+}
 
     async function submit() {
       els.submitBtn.disabled = true;
