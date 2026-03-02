@@ -384,8 +384,8 @@
       if (!teacher) return { ok:false, msg:"Select your math teacher." };
       if (activities.length === 0) return { ok:false, msg:"Choose at least one activity." };
       if (!ENDPOINT || ENDPOINT.includes("https://script.google.com/macros/s/AKfycbxWGskpUrsxM84lFF0HKFQSVY2A_KS2xIzyurR5JCO1InLR4eEuGUT7oIUnQXpYgTYM/exec")) {
-        return { ok:false, msg:"Form is not configured: missing endpoint URL." };
-      }
+    return { ok:false, msg:"Form is not configured: missing endpoint URL." };
+    }
       return { ok:true };
     }
 
