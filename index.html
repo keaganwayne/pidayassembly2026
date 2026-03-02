@@ -225,7 +225,7 @@
             </div>
             <div>
               <label for="homeroom">Homeroom</label>
-              <input id="homeroom" type="text" placeholder="e.g. 6A / 7C / 8B" />
+              <input id="homeroom" type="text" placeholder="e.g. 6.6, 7.5 or 8.3" />
             </div>
           </div>
 
@@ -380,7 +380,7 @@
       const activities = getSelectedActivities();
 
       if (!name) return { ok:false, msg:"Enter your name." };
-if (!homeroom) return { ok:false, msg:"Enter your homeroom (e.g. 6A)." };
+if (!homeroom) return { ok:false, msg:"Enter your homeroom (e.g. 6.6)." };
 if (!teacher) return { ok:false, msg:"Select your math teacher." };
 if (activities.length === 0) return { ok:false, msg:"Choose at least one activity." };
 
