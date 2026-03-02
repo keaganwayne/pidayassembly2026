@@ -140,6 +140,13 @@ select:focus {
       align-items:flex-start;
       margin-bottom: 10px;
     }
+    .activity {
+      cursor: pointer;
+    }
+
+    .activity * {
+      cursor: pointer;
+    }
     .activity input[type="checkbox"]{
       width: 18px; height: 18px; margin-top: 3px;
       accent-color: var(--accent);
@@ -334,9 +341,11 @@ select:focus {
             <div>
               <p class="title"><label for="a4" style="margin:0;color:var(--text);font-size:14px;">Pi Story</label></p>
               <p class="desc">Write a story where each word starts with the letter mapped from π digits.</p>
-              <a class="tiny-link" href="https://script.google.com/macros/s/AKfycbxWGskpUrsxM84lFF0HKFQSVY2A_KS2xIzyurR5JCO1InLR4eEuGUT7oIUnQXpYgTYM/exec" target="_blank" rel="noopener noreferrer">
-                Open Pi Story activity
-              </a>
+              <a class="tiny-link"
+   href="https://script.google.com/macros/s/AKfycbz5Bu5p84LMOqmxjHhcgpGXUCSjYjO-xVFNR_AhUCNDoHHk1Q3debY0j8xCvDSy3RyOwA/exec"
+   target="_blank" rel="noopener noreferrer">
+  Open Pi Story activity
+</a>
             </div>
           </div>
 
@@ -376,7 +385,20 @@ select:focus {
       statusBadMsg: document.getElementById("statusBadMsg"),
       activitiesWrap: document.getElementById("activities"),
     };
+document.querySelectorAll(".activity").forEach(row => {
+  row.addEventListener("click", (e) => {
+    // If they clicked a link, don't toggle
+    if (e.target.closest("a")) return;
 
+    const cb = row.querySelector('input[type="checkbox"]');
+    if (!cb) return;
+
+    // If they clicked directly on the checkbox, let default happen
+    if (e.target === cb) return;
+
+    cb.checked = !cb.checked;
+  });
+});
     function getSelectedActivities() {
       const boxes = els.activitiesWrap.querySelectorAll('input[type="checkbox"]');
       return Array.from(boxes).filter(b => b.checked).map(b => b.value);
