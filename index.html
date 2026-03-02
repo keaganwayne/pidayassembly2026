@@ -101,14 +101,27 @@
     .card .bd{ padding: 16px; }
 
     label{ display:block; margin: 0 0 6px; font-size: 13px; color: var(--muted); }
-    input, select{
+    /* Text inputs stay dark, BUT keep native checkbox/radio appearance */
+input{
   width:100%;
   padding: 12px 12px;
   border-radius: 12px;
   border: 1px solid var(--line);
-  background: #1a2028; /* darker solid background */
+  background: #1a2028;
   color: var(--text);
   outline:none;
+}
+
+/* Only the SELECT gets appearance:none (so it stays dark) */
+select{
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #1a2028;
+  color: var(--text);
+  outline:none;
+
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -282,11 +295,7 @@ select:focus {
           </div>
 
           <!-- Optional code field (only used if ACCESS_CODE is set in Apps Script) -->
-          <div style="margin-top:12px;">
-            <label for="code">Access code (only if your teacher gave you one)</label>
-            <input id="code" type="text" placeholder="Leave blank unless required" />
-          </div>
-
+          
           <div class="actions">
             <button id="submitBtn">Submit signup</button>
             <div class="note">
@@ -315,7 +324,7 @@ select:focus {
           <div class="activity">
             <input type="checkbox" id="a1" value="Rubiks cube contest">
             <div>
-              <p class="title"><label for="a1" style="margin:0;color:var(--text);font-size:14px;">Rubiks cube contest</label></p>
+              <p class="title"><label style="margin:0;color:var(--text);font-size:14px;">Rubiks cube contest</label></p>
               <p class="desc">Race head-to-head. Winners advance until one final champion remains.</p>
             </div>
           </div>
@@ -323,7 +332,7 @@ select:focus {
           <div class="activity">
             <input type="checkbox" id="a2" value="Math Trivia">
             <div>
-              <p class="title"><label for="a2" style="margin:0;color:var(--text);font-size:14px;">Math Trivia</label></p>
+              <p class="title"><label style="margin:0;color:var(--text);font-size:14px;">Math Trivia</label></p>
               <p class="desc">3 teams of 4 students. Mixed grades. Questions test math knowledge + deductive reasoning.</p>
             </div>
           </div>
@@ -331,7 +340,7 @@ select:focus {
           <div class="activity">
             <input type="checkbox" id="a3" value="Pi puzzle">
             <div>
-              <p class="title"><label for="a3" style="margin:0;color:var(--text);font-size:14px;">Pi puzzle</label></p>
+              <p class="title"><label style="margin:0;color:var(--text);font-size:14px;">Pi puzzle</label></p>
               <p class="desc">How many digits of π can you recall? Put your memory to the test.</p>
             </div>
           </div>
@@ -339,7 +348,7 @@ select:focus {
           <div class="activity">
             <input type="checkbox" id="a4" value="Pi Story">
             <div>
-              <p class="title"><label for="a4" style="margin:0;color:var(--text);font-size:14px;">Pi Story</label></p>
+              <p class="title"><label style="margin:0;color:var(--text);font-size:14px;">Pi Story</label></p>
               <p class="desc">Write a story where each word starts with the letter mapped from π digits.</p>
               <a class="tiny-link"
    href="https://script.google.com/macros/s/AKfycbz5Bu5p84LMOqmxjHhcgpGXUCSjYjO-xVFNR_AhUCNDoHHk1Q3debY0j8xCvDSy3RyOwA/exec"
@@ -352,7 +361,7 @@ select:focus {
           <div class="activity">
             <input type="checkbox" id="a5" value="Guess the handwriting">
             <div>
-              <p class="title"><label for="a5" style="margin:0;color:var(--text);font-size:14px;">Guess the handwriting</label></p>
+              <p class="title"><label style="margin:0;color:var(--text);font-size:14px;">Guess the handwriting</label></p>
               <p class="desc">Do you know your math teachers well enough to recognize their handwriting?</p>
             </div>
           </div>
