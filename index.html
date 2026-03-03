@@ -387,7 +387,6 @@ select:focus {
       homeroom: document.getElementById("homeroom"),
       teacher: document.getElementById("teacher"),
       grade: document.getElementById("grade"),
-      code: document.getElementById("code"),
       submitBtn: document.getElementById("submitBtn"),
       statusOk: document.getElementById("statusOk"),
       statusBad: document.getElementById("statusBad"),
@@ -459,7 +458,6 @@ return { ok:true };
       params.set("homeroom", els.homeroom.value.trim());
       params.set("teacher", els.teacher.value.trim());
       params.set("grade", els.grade.value.trim());
-      params.set("code", els.code.value.trim());
       params.set("ua", navigator.userAgent || "");
 
       // Multi-select activities:
