@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta http-equiv="Content-Security-Policy" content="connect-src 'none'; form-action 'none'; base-uri 'self'; object-src 'none'">
+<script src="demo-form.js"></script>
+<script src="demo-banner.js"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pi Day Assembly — Activity Signups</title>
@@ -256,7 +260,7 @@ select:focus {
           <div class="row">
             <div>
               <label for="name">Student name</label>
-              <input id="name" type="text" placeholder="e.g. Alex Chen" autocomplete="name" />
+              <input id="name" type="text" placeholder="e.g. Demo Learner" autocomplete="name" />
             </div>
             <div>
               <label for="homeroom">Homeroom</label>
@@ -297,7 +301,7 @@ select:focus {
           <!-- Optional code field (only used if ACCESS_CODE is set in Apps Script) -->
           
           <div class="actions">
-            <button id="submitBtn">Submit signup</button>
+            <button id="submitBtn">Preview signup</button>
             <div class="note">
               Required: name, homeroom, math teacher, and at least one activity.
             </div>
@@ -305,7 +309,7 @@ select:focus {
 
           <div id="statusOk" class="status ok" role="status" aria-live="polite">
             <p class="t">Submitted ✅</p>
-            <p class="m">Your signup has been recorded.</p>
+            <p class="m">Demo complete. No signup was submitted or stored.</p>
           </div>
           <div id="statusBad" class="status bad" role="status" aria-live="polite">
             <p class="t">Not submitted ❌</p>
@@ -351,7 +355,7 @@ select:focus {
               <p class="title"><label style="margin:0;color:var(--text);font-size:14px;">Pi Story</label></p>
               <p class="desc">Write a story where each word starts with the letter mapped from π digits.</p>
               <a class="tiny-link"
-   href="https://demo.invalid/form"
+   href="#" onclick="event.preventDefault(); alert('This external activity is disabled in the portfolio demo.')"
    target="_blank" rel="noopener noreferrer">
   Open Pi Story activity
 </a>
@@ -464,7 +468,7 @@ return { ok:true };
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
-    await fetch(ENDPOINT, {
+    await demoSubmission(ENDPOINT, {
       method: "POST",
       mode: "no-cors", // fire-and-forget
       headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
